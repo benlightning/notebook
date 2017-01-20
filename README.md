@@ -1,2 +1,1 @@
-# notebook
-Record some knowledge
+# 一些笔记的记录
