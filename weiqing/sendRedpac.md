@@ -1,3 +1,4 @@
+## 发红包代码记录
 ```
 /*
 $config = $this->module['config'];
