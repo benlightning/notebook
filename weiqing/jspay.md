@@ -1,5 +1,5 @@
 ## js代码部分
-```
+```javascript
 function invokepay(type) {
     $.getJSON("getJSpayParamUrl", {}, function (data, status) {
         if (status == 'success' && data.error == 0) {
@@ -49,7 +49,7 @@ function invokepay(type) {
 }
 ```
 ## php代码部分
-```
+```php
 function doMobilePay(){
     global $_W,$_GPC;
     if ($_W['isajax']) {

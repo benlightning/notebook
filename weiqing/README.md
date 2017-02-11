@@ -9,3 +9,8 @@
 * [微信上传媒体文件](uploadmedia.md)
 * [模块定时任务linux下](linux-cron.md)
 * [module.php文件设置](module-setting-rule.md)
+
+判断是否关注 1 关注，0未关注
+```php
+$follow = pdo_fetchcolumn("select follow from " . tablename('mc_mapping_fans') . " where openid=:openid and uniacid=:uniacid order by `fanid` desc", array(":openid" => $_W['openid'], ":uniacid" => $_W['uniacid']));
+```

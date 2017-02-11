@@ -1,6 +1,6 @@
 ## module.php文件的内容，设置回复规则和参数设置
 
-```
+```php
 defined('IN_IA') or exit('Access Denied');
 
 class xxxModule extends WeModule {

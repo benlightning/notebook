@@ -1,6 +1,6 @@
 ## 生成临时二维码代码
 
-```
+```php
 load()->model('account');
 $acc = WeAccount::create($_W['acid']);
 $token = $acc->getAccessToken();
@@ -40,7 +40,7 @@ $qrcode = array(
 pdo_insert('qrcode', $qrcode);
 ```
 #### respond()方法中 $this->message 的值
-```
+```php
 // 关键字返回信息
 array (
   'tousername' => '原始ID',

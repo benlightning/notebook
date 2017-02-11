@@ -1,5 +1,5 @@
 ## 发红包代码记录
-```
+```php
 /*
 $config = $this->module['config'];
 $account = account_fetch($acid);

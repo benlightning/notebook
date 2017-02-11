@@ -1,6 +1,6 @@
 # 常用使用记录（持续增加）
 
-```
+```bash
 #开机执行脚本，命令写入/etc/rc.local即可（需要root权限）
 vim /etc/rc.local
 

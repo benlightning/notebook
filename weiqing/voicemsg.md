@@ -1,4 +1,4 @@
-```
+```php
 public function respond() {
     global $_W;
     $type = $this->message['type'];

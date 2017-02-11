@@ -3,7 +3,7 @@
 
 2. 创建本地库
 
-```
+```bash
 ssh -T git@github.com # 在初始化版本库之前，先要确认认证的公钥是否正确
 git init # 初始化版本库
 git remote add origin git@github.com:yourname/yourRepo.git # 进入要上传的仓库，添加远程地址
@@ -13,7 +13,7 @@ git commit -m 'first commit' # 提交并添加注释
 git push origin master # 上传到github，如果git仓库中已经有一部分代码，会报（Non-fast-forward）错误
 ```
 或者
-```
+```bash
 git init
 git add -A
 git commit -m "first commit"
@@ -131,7 +131,7 @@ git push -u origin master
 ```
  
 
-```
+```bash
 # 用github上的代码把本地的替换掉
 git reset --hard
 git pull

@@ -1,4 +1,4 @@
-```
+```php
 class WeixinQrcode {
 
     static $qrcode_url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?";

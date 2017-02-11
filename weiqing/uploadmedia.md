@@ -1,4 +1,4 @@
-```
+```php
 // $fullname = MODULE_ROOT . '/images/xx.jpg';
 public function uploadMedia($fullname) {
     global $_W;

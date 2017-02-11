@@ -1,6 +1,6 @@
 ## PHP 文件加锁解决并发的一点记录
 
-```
+```php
 // 简单的文件计数器
 function pageCount($fileName){
     if ($fp = fopen($fileName, 'r+')) {
@@ -26,7 +26,7 @@ function pageCount($fileName){
 
 使用场景，一个发红包的系统中，使用文件锁来控制发红包频率（在没有使用redis等缓存系统时的备选方案）
 
-```
+```php
 $lockfile = dirname(__FILE__) . '/redpac.lock';
 if ($fp = fopen($lockfile, 'w')) {
     if (flock($fp, LOCK_EX | LOCK_NB)) {

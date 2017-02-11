@@ -1,5 +1,4 @@
-```
-<?php
+```php
 
 if (PHP_SAPI == 'cli'){
     die('This example should only be run from a Web Browser');

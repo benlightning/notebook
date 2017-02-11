@@ -1,5 +1,5 @@
 ## 微擎下使用定时任务，模块下创建cron.php
-```
+```php
 define('IN_SYS', true);
 require '../../framework/bootstrap.inc.php';
 //require '../../web/common/bootstrap.sys.inc.php';//web项目使用  

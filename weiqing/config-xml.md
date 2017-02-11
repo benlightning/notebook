@@ -1,6 +1,6 @@
 ## manifest.xml记录
 
-```
+```xml
 <application setting="false">...</application><!-- setting来控制是否显示 核心功能设置-参数设置 的显示 -->
 <platform>
     <subscribes>
