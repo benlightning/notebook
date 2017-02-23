@@ -9,6 +9,7 @@
 * [微信上传媒体文件](uploadmedia.md)
 * [模块定时任务linux下](linux-cron.md)
 * [module.php文件设置](module-setting-rule.md)
+* [阿里大鱼短信客服](alidayu-sms.md)
 
 判断是否关注 1 关注，0未关注
 ```php
