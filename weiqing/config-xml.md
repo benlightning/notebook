@@ -32,6 +32,19 @@
     <menu>
         <entry title="菜单名" do="list" state="" direct="false" />
     </menu>
+    <cover>
+        <entry title="便利店首页" do="store" state="" direct="true" />
+    </cover>
+    <!-- 以下是app端微网站菜单部分（不需要网站功能时基本无用）-->
+    <home>
+        <entry title="便利店首页" do="store" state="" direct="true" />
+    </home>
+    <profile>
+        <entry title="我的订单" do="orders" state="" direct="false" />
+    </profile>
+    <shortcut>
+        <entry title="便利店订单" do="orders" state="" direct="false" />
+    </shortcut>
 </bindings>
     
 ```

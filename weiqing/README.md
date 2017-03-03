@@ -15,3 +15,7 @@
 ```php
 $follow = pdo_fetchcolumn("select follow from " . tablename('mc_mapping_fans') . " where openid=:openid and uniacid=:uniacid order by `fanid` desc", array(":openid" => $_W['openid'], ":uniacid" => $_W['uniacid']));
 ```
+
+## 手册地址
+* http://www.kancloud.cn/donknap/we7/136556
+* (old)http://www.we7.cc/manual/dev:standards
