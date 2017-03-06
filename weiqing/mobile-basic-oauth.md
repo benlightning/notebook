@@ -17,4 +17,6 @@ public function basicOauth() {
         $_W['fans']['tag']['avatar'] = $info['avatar'];
     }
 }
+// 判断是否关注 $follow['follow'] == 1
+$follow = mc_fansinfo($openid, $_W['acid'], $_W['uniacid']);
 ```

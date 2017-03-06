@@ -11,7 +11,7 @@ if ($return['code'] == 0) {
     header("Content-type: application/octet-stream");
     header("Accept-Ranges: bytes");
     header("Accept-Length: " . $size);
-    header("Content-Disposition: attachment; filename=" . $store['storename'] . ".jpg");
+    header("Content-Disposition: attachment; filename=" . $name . ".jpg");
     echo $img;
     exit;
 }

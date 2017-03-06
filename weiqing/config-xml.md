@@ -29,6 +29,9 @@
     <card embed="false" /><!-- 没使用过，可能没用吧 -->
 </platform>
  <bindings><!-- 业务功能菜单 -->
+    <rule>
+        <entry title="规则记录扩展" do="list" state="" direct="false" />
+    </rule>
     <menu>
         <entry title="菜单名" do="list" state="" direct="false" />
     </menu>
