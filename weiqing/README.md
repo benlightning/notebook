@@ -18,6 +18,9 @@
 $follow = pdo_fetchcolumn("select follow from " . tablename('mc_mapping_fans') . " where openid=:openid and uniacid=:uniacid order by `fanid` desc", array(":openid" => $_W['openid'], ":uniacid" => $_W['uniacid']));
 ```
 
+> 关于脏数据的问题，尤其是牵扯支付订单这些的，自建模块时会经常清空表，而订单记录一般需要保存到系统的core_playlog表中，此时truncate表时务必清空相应的core_playlog表数据
+
 ## 手册地址
 * http://www.kancloud.cn/donknap/we7/136556
 * (old)http://www.we7.cc/manual/dev:standards
+
