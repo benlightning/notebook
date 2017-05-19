@@ -21,4 +21,9 @@ function timer(intDiff){
 	intDiff--;
 	}, 1000);
 }
+/*
+(function(){
+	timer(intDiff);
+})();
+*/
 ```
