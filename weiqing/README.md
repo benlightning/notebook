@@ -12,6 +12,7 @@
 * [阿里大鱼短信客服](alidayu-sms.md)
 * [微信js上传图片到微信服务器，并下载到本地](wechat-uploadpic.md)
 * [网页授权相关调用](mobile-basic-oauth.md)
+* [processor相关](processor.md)
 
 判断是否关注 1 关注，0未关注
 ```php
