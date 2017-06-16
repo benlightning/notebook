@@ -3,7 +3,7 @@
 
 /**
  * 处理程序
- *
+ * 注：只能回复关键字和指向本模块的特殊消息（单纯的输入文本不进行转接）
  * @author benlightning<394849890@qq.com>
  * @url http://bbs.we7.cc/
  */
