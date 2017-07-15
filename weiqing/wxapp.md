@@ -41,7 +41,8 @@
             <message type="text" />
         </handles>
         <supports>
-            <item type="wxapp" />
+            <item type="app" /><!--支持公众号应用-->
+            <item type="wxapp" /><!--支持小程序应用-->
         </supports>
         <rule embed="false" />
         <card embed="false" />
@@ -53,6 +54,9 @@
         <cover>
             <!--<entry title="入口设置" do="index" state="" direct="true" />-->
         </cover>
+        <page>
+			<entry title="首页" do="/pages/index/index" state="" direct="" />
+		</page>
     </bindings>
     <permissions>
     </permissions>
