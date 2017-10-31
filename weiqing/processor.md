@@ -57,3 +57,16 @@ class xxxModuleProcessor extends WeModuleProcessor {
 
 }
 ```
+
+
+  // 小程序进入客服会话获得消息
+  'tousername' => 'gh_0a27a3',
+  'fromusername' => '',
+  'createtime' => '1508225247',
+  'msgtype' => 'event',
+  'event' => 'user_enter_tempsession',
+  'sessionfrom' => 'weapp',
+  'from' => 'openid',
+  'to' => 'gh_0a27a3b',
+  'time' => '1508225247',
+  'type' => 'event',

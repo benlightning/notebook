@@ -49,6 +49,45 @@ function invokepay(type) {
 }
 ```
 ## php代码部分
+
+#### 调用系统支付
+```php
+$params = array(
+    'module' => $this->modulename,
+    'type' => 'wechat',
+    'uniacid' => $_W['uniacid'],
+    'acid' => $_W['acid'],
+    'openid' => $_W['openid'],
+    'payopenid' => $_W['openid'],
+    'title' => 'xxx支付',
+    'fee' => $fee,
+    'tid' => $tid //一般使用订单id
+);
+$params['user'] = $_W['fans']['from_user'];
+
+if ($_W['container'] != 'wechat') {
+    exit(json_encode(array('status' => 0, 'msg' => '请在微信中使用.')));
+}
+$setting = uni_setting($_W['uniacid'], array('payment'));
+if (!is_array($setting['payment'])) {
+    exit(json_encode(array('status' => 0, 'msg' => '没有设定支付参数.')));
+}
+$params['attach'] = $_W['uniacid'];
+$wechat = $setting['payment']['wechat'];
+$sql = 'SELECT `key`,`secret` FROM ' . tablename('account_wechats') . ' WHERE `acid`=:acid';
+$row = pdo_fetch($sql, array(':acid' => $wechat['account']));
+$wechat['appid'] = $row['key'];
+$wechat['secret'] = $row['secret'];
+$wOpt = $this->wechat_build($params, $wechat);
+if (is_error($wOpt)) {
+    if ($wOpt['message'] == 'invalid out_trade_no' || $wOpt['message'] == 'OUT_TRADE_NO_USED') {
+        exit(json_encode(array('status' => 3, 'msg' => '抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。')));
+    }
+    exit(json_encode(array('status' => 3, 'msg' => '抱歉，发起支付失败，具体原因为：“' . $wOpt['errno'] . ':' . $wOpt['message'] . '”。请及时联系站点管理员。')));
+}
+```
+
+#### 自己实现支付
 ```php
 function doMobilePay(){
     global $_W,$_GPC;
@@ -255,4 +294,66 @@ public function wechat_build($params, $wechat) {
     }
     return $wOpt;
 }
+
+public function torefund(){
+    if ($config['oauth'] == 0) { //不借用权限
+        $acid = $_W['acid'];
+    } else {
+        $acid = $config['oauth'];
+    }
+    $account = account_fetch($acid);
+    $uniacid = pdo_fetchcolumn("SELECT uniacid FROM " . tablename('account') . " WHERE acid=:acid", array(':acid' => $acid));
+    $paysetting = uni_setting($uniacid, array('payment'));
+    $wechatpay = $paysetting['payment']['wechat'];
+    $wechat = array(
+        'appid' => $account['key'],
+        'mchid' => $wechatpay['mchid'],
+        'apikey' => $wechatpay['apikey'],
+        'pemname' => $config['pemname'],
+        'ip' => $config['ip'],
+    );
+    $desc = array('transaction_id' => $Vieworders['transid'], 'out_refund_no' => $Vieworders['ordersn']);
+    $payresult = $this->refund($wechat, $Vieworders['price'], $desc);
+    
+}
+    //退款
+    private function refund($wechat, $money, $desc)
+    {
+        $url = "https://api.mch.weixin.qq.com/secapi/pay/refund";
+        $pars = array();
+        $pars['appid'] = $wechat['appid'];//公众账号ID
+        $pars['mch_id'] = $wechat['mchid'];//商户号
+        $pars['nonce_str'] = random(32);//随机字符串
+        $pars['transaction_id'] = $desc['transaction_id'];//微信订单号
+        $pars['out_refund_no'] = $desc['out_refund_no'];//商户退款单号
+        $pars['total_fee'] = $money * 100;//总金额
+        $pars['refund_fee'] = $money * 100;//退款金额
+        $pars['refund_fee_type'] = 'CNY';//货币种类
+        $pars['op_user_id'] = $wechat['mchid'];//操作员帐号, 默认为商户号
+        ksort($pars, SORT_STRING);
+        $string1 = '';
+        foreach ($pars as $k => $v) {
+            $string1 .= "{$k}={$v}&";
+        }
+        $string1 .= "key={$wechat['apikey']}";
+        $pars['sign'] = strtoupper(md5($string1));
+        $xml = array2xml($pars);
+        $extras = array();
+        $extras['CURLOPT_CAINFO'] = ATTACHMENT_ROOT . '/cert/rootca.pem.' . $wechat['pemname'];
+        $extras['CURLOPT_SSLCERT'] = ATTACHMENT_ROOT . '/cert/apiclient_cert.pem.' . $wechat['pemname'];
+        $extras['CURLOPT_SSLKEY'] = ATTACHMENT_ROOT . '/cert/apiclient_key.pem.' . $wechat['pemname'];
+
+        load()->func('communication');
+        $procResult = null;
+        $response = ihttp_request($url, $xml, $extras);
+        if ($response['code'] == 200) {
+            $responseObj = simplexml_load_string($response['content'], 'SimpleXMLElement', LIBXML_NOCDATA);
+            $responseObj = (array)$responseObj;
+            $return['code'] = $responseObj['return_code'];
+            $return['result_code'] = $responseObj['result_code'];
+            $return['err_code'] = $responseObj['err_code'];
+            $return['msg'] = $responseObj['return_msg'];
+            return $return;
+        }
+    }
 ```
