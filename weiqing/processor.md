@@ -1,3 +1,5 @@
+# 接收微信转发过来的数据并处理
+
 ```php
 <?php
 
@@ -57,7 +59,6 @@ class xxxModuleProcessor extends WeModuleProcessor {
 
 }
 ```
-
 
   // 小程序进入客服会话获得消息
   'tousername' => 'gh_0a27a3',

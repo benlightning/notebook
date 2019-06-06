@@ -1,4 +1,5 @@
-## 小程序开发模块(https://www.we7.cc/manual/module:wxapp)
+# 小程序开发模块(https://www.we7.cc/manual/module:wxapp)
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns="http://www.we7.cc" versionCode="0.6">
